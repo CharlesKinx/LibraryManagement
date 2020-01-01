@@ -5,7 +5,6 @@
 #include<QLineEdit>
 #include"stacktools.h"
 #include"structs.h"
-
 namespace Ui {
 class AddNewBook;
 }

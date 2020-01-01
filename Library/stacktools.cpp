@@ -54,12 +54,13 @@ char* StackTools::charQStr(QString str){
 }
 
 
-int StackTools::isExistBooks(BookArray* bookArray,Books* book){
 
+int StackTools::isExistBooks(BookArray* bookArray,Books* book){
+    //根据book->bookType的值（1 为自然科学 2 为文学著作）
     switch (book->bookType) {
         case 1:
         for(int i = 0;i<bookArray->SciBooksNum;i++){
-            if(bookArray->SciBooks[i]->bookISBN == book->bookISBN){
+            if(bookArray->SciBooks[i]->bookISBN == book->bookISBN){ //判断是否存在的依据是：在自然科学书籍数组中是否存在一样的图书ISBN
                 return i;
             }
         }
@@ -151,7 +152,7 @@ bool StackTools::isRightData(long Date){
         return true;
 }
 
-bool StackTools::isOutData(Students* student){
+bool StackTools::isOutData(Books* student){
     long day1 = student->borrowDate % 100;
         long month1 = (student->borrowDate % 10000 - day1) / 100;
         long year1 = (student->borrowDate - student->borrowDate % 10000) / 10000;

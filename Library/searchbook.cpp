@@ -29,6 +29,7 @@ void SearchBook::on_pushButton_2_released()
     all->show();
 }
 
+
 bool SearchBook::isSameName(QString str,char* name){
 
     StackTools *stacktools = new StackTools;
@@ -44,7 +45,6 @@ bool SearchBook::isSameName(QString str,char* name){
     }else{
         return false;
     }
-
 }
 
 bool SearchBook::isExistISBN(int type,int num,QString name){

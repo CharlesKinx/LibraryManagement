@@ -33,10 +33,16 @@ void ReturnBook::on_pushButton_2_released()
     mainwin->show();
 }
 
+
+
+
 bool ReturnBook::isExistStudent(Students* student){
     AddNewBook *add = new AddNewBook;
+
     for(int i =0;i<LendBook::studentArray->studentNum;i++){
+
         if(student->studentID == LendBook::studentArray->studentarray[i]->studentID&&add->isSameName(student->name, LendBook::studentArray->studentarray[i]->name)){
+
             index = i;
             return true;
         }
@@ -45,11 +51,15 @@ bool ReturnBook::isExistStudent(Students* student){
 }
 
 
+
 bool ReturnBook::isExistBook(Books* book,Students* student){
+
     if(isExistStudent(student)){
+
         for(int i = 0;i<LendBook::studentArray->studentarray[index]->lendBooksNum;i++){
+
             if(book->bookISBN == LendBook::studentArray->studentarray[index]->lendBooks[i]->bookISBN){
-                bookIndex = i;
+                bookIndex = i;//记录图书索引
                 return true;
             }
         }
@@ -97,7 +107,7 @@ void ReturnBook::on_pushButton_released()
 
     student->studentID = ui->lineEdit_2->text().toInt();
     book->bookType = ui->lineEdit_5->text().toInt();
-    student->returnDate = ui->lineEdit_6->text().toLong();
+    book->returnDate = ui->lineEdit_6->text().toLong();
     book->bookISBN = ui->lineEdit_7->text().toInt();
 
     student->name = stack->charQStr(ui->lineEdit->text());
@@ -113,22 +123,28 @@ void ReturnBook::on_pushButton_released()
         QMessageBox::information(this, "错误", "请正确输入书籍信息！");
     }else if(book->bookType !=1 &&book->bookType !=2){
         QMessageBox::information(this, "错误", "请正确输入书籍类型代号！");
-    }else if(!stack->isRightData(student->returnDate)){
+    }else if(!stack->isRightData(book->returnDate)){
         QMessageBox::information(this, "错误", "请正确输入还书日期！");
     }else if(!isExistStudent(student)){
         QMessageBox::information(this, "错误", "无该同学借书信息！");
     }else if(!isExistBook(book,student)){
         QMessageBox::information(this, "错误", "该同学未借阅此书！");
     }else {
-        if(stack->isOutData(LendBook::studentArray->studentarray[index])){
+        if(stack->isOutData(LendBook::studentArray->studentarray[index]->lendBooks[0])){
             QMessageBox::information(this, "注意", "该同学已逾期借阅此书！");
             QMessageBox::information(this, "正确", "成功还书！");
             AddReturnBook(book);
             returnBook();
+            MainWindow *mainwin = new MainWindow;
+            this->close();
+            mainwin->show();
         }else{
             QMessageBox::information(this, "正确", "成功还书！");
             AddReturnBook(book);
             returnBook();
+            MainWindow *mainwin = new MainWindow;
+            this->close();
+            mainwin->show();
         }
     }
 }

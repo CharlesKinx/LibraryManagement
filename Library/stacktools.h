@@ -18,7 +18,7 @@ public:
     int isExistBooks(BookArray* bookArray,Books* book);
     void clearBook(BookArray* bookArray,int index,int bookType);
     bool isRightData(long Date);
-    bool isOutData(Students* student);
+    bool isOutData(Books* student);
     Students* InitStudent();
     int isYear(int year);
     int frontday(int year, int month, int day);

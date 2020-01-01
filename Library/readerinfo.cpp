@@ -50,6 +50,8 @@ void ReaderInfo::on_pushButton_2_released()
     all->show();
 }
 
+
+
 bool ReaderInfo::isExistStudent(QString name,int ID){
 
     SearchBook *search = new SearchBook;
@@ -67,8 +69,8 @@ void ReaderInfo::showFirstInfo(){
     QString name = QString::fromLocal8Bit( LendBook::studentInfo->lendBooks[0]->name);
     QString writr = QString::fromLocal8Bit( LendBook::studentInfo->lendBooks[0]->bookWriter);
     QString num = "1";
-    QString lendDate = QString::number (LendBook::studentInfo->borrowDate);
-    QString days = QString::number( LendBook::studentInfo->returnDay);
+    QString lendDate = QString::number (LendBook::studentInfo->lendBooks[0]->borrowDate);
+    QString days = QString::number( LendBook::studentInfo->lendBooks[0]->returnDay);
     QString type;
     if( LendBook::studentInfo->lendBooks[0]->bookType ==1){
         type = "自然科学";
@@ -85,8 +87,47 @@ void ReaderInfo::showFirstInfo(){
 }
 
 void ReaderInfo::showSecondInfo(){
+    QString name = QString::fromLocal8Bit( LendBook::studentInfo->lendBooks[1]->name);
+    QString writr = QString::fromLocal8Bit( LendBook::studentInfo->lendBooks[1]->bookWriter);
+    QString num = "1";
+    QString lendDate = QString::number (LendBook::studentInfo->lendBooks[1]->borrowDate);
+    QString days = QString::number( LendBook::studentInfo->lendBooks[1]->returnDay);
+    QString type;
+    if( LendBook::studentInfo->lendBooks[1]->bookType ==1){
+        type = "自然科学";
+    }else{
+        type = "文学著作";
+    }
 
+    ui->lineEdit_12->setText(name);
+    ui->lineEdit_17->setText(type);
+    ui->lineEdit_20->setText(writr);
+    ui->lineEdit_19->setText(num);
+    ui->lineEdit_21->setText(lendDate);
+    ui->lineEdit_18->setText(days);
 }
+
+void ReaderInfo::showThirdInfo(){
+    QString name = QString::fromLocal8Bit( LendBook::studentInfo->lendBooks[2]->name);
+    QString writr = QString::fromLocal8Bit( LendBook::studentInfo->lendBooks[2]->bookWriter);
+    QString num = "1";
+    QString lendDate = QString::number (LendBook::studentInfo->lendBooks[2]->borrowDate);
+    QString days = QString::number( LendBook::studentInfo->lendBooks[2]->returnDay);
+    QString type;
+    if( LendBook::studentInfo->lendBooks[2]->bookType ==1){
+        type = "自然科学";
+    }else{
+        type = "文学著作";
+    }
+
+    ui->lineEdit_16->setText(name);
+    ui->lineEdit_10->setText(type);
+    ui->lineEdit_13->setText(writr);
+    ui->lineEdit_15->setText(num);
+    ui->lineEdit_14->setText(lendDate);
+    ui->lineEdit_11->setText(days);
+}
+
 
 void ReaderInfo::on_pushButton_3_released()
 {
@@ -105,10 +146,13 @@ void ReaderInfo::on_pushButton_3_released()
     }else if(LendBook::studentInfo->lendBooksNum == 0){
          QMessageBox::information(this, "错误", "没有该读者借书信息！");
     }else if(LendBook::studentInfo->lendBooksNum ==1){
-
+        showFirstInfo();
     }else if(LendBook::studentInfo->lendBooksNum == 2){
-
-
+        showFirstInfo();
+        showSecondInfo();
+    }else if(LendBook::studentInfo->lendBooksNum==3){
+        showFirstInfo();
+        showSecondInfo();
+        showThirdInfo();
     }
-
 }

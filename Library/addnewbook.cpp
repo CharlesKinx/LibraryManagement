@@ -38,11 +38,16 @@ void AddNewBook::on_pushButton_2_released()
     this->close();
     mainw->show();
 }
+
+
+
 bool AddNewBook::isSameName(char* newName,char* bookName){
     int i = 0;
+
     while(newName[i] == bookName[i] && newName[i] != '\0' && bookName[i] != '\0'){
         i++;
     }
+
     if(newName[i] == '\0' && bookName[i]=='\0'){
         return true;
     }else{
@@ -128,6 +133,10 @@ void AddNewBook::on_pushButton_released()
   }else{
       QMessageBox::information(this, "正确", "入库成功");
       addNewBook(book,book->newAddNum);
+      MainWindow *mainw = new MainWindow;
+      this->close();
+      mainw->show();
+
   }
 }
 

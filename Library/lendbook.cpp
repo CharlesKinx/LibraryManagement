@@ -113,8 +113,8 @@ void LendBook::on_pushButton_released()
     student->phoneNum = ui->lineEdit_3->text().toLong();
     book->bookType = ui->lineEdit_5->text().toInt();
     book->bookISBN = ui->lineEdit_9->text().toInt();
-    student->borrowDate = ui->lineEdit_6->text().toLong();
-    student->returnDay = ui->lineEdit_8->text().toLong();
+    book->borrowDate = ui->lineEdit_6->text().toLong();
+    book->returnDay = ui->lineEdit_8->text().toLong();
 
     student->name = stackTools->charQStr(ui->lineEdit_1->text());
     book->bookWriter = stackTools->charQStr(ui->lineEdit_7->text());
@@ -130,9 +130,9 @@ void LendBook::on_pushButton_released()
         QMessageBox::information(this, "错误", "请正确输入借书信息！");
     }else if(book->bookType !=1 &&book->bookType!=2){
         QMessageBox::information(this, "错误", "请正确输入借书类别代号！");
-    }else if(!stackTools->isRightData(student->borrowDate)){
+    }else if(!stackTools->isRightData(book->borrowDate)){
         QMessageBox::information(this, "错误", "请正确输入借阅时间！");
-    }else if(student->returnDay >=30||student->returnDay<=0){
+    }else if(book->returnDay >=30||book->returnDay<=0){
         QMessageBox::information(this, "错误", "请正确输入借阅天数！");
     }else if(student->lendBooksNum >3){
          QMessageBox::information(this, "借阅失败", "该读者借阅书籍量已是最大借书量！");
@@ -141,6 +141,9 @@ void LendBook::on_pushButton_released()
     }else{
         QMessageBox::information(this, "正确", "借阅成功！");
         addNewStudents(student,book);
+        MainWindow *mainwin = new MainWindow;
+        this->close();
+        mainwin->show();
     }
 }
 

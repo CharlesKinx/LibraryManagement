@@ -16,6 +16,9 @@ typedef struct Books{
     int booksNum;   //库存
     int newAddNum;  //新增图书数量
     int bookTime;   //书最近一次借的时间
+    long borrowDate=0;    //借书日期
+    long returnDate=0; //还书日期
+    int returnDay=0;  //借书时间
 
 }book;
 
