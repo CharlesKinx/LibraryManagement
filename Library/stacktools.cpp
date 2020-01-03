@@ -153,7 +153,7 @@ bool StackTools::isRightData(long Date){
 }
 
 bool StackTools::isOutData(Books* student){
-    long day1 = student->borrowDate % 100;
+        long day1 = student->borrowDate % 100;
         long month1 = (student->borrowDate % 10000 - day1) / 100;
         long year1 = (student->borrowDate - student->borrowDate % 10000) / 10000;
         long day2 = student->returnDate % 100;
